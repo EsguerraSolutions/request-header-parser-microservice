@@ -27,8 +27,11 @@ app.get("/api/hello", function (req, res) {
 
 //API endpoint for request header parser
 app.get("/api/whoami", (req, res) => {
-  res.json({
-    ipaddress : req.ip
+  console.log(req.headers);
+  return res.json({
+    ipaddress : req.connection.remoteAddress,
+    language : req.headers['accept-language'],
+    software : req.header('user-agent')
   });
 });
 
